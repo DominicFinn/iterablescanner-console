@@ -13,16 +13,15 @@ let month = now.getMonth();
 let year = now.getFullYear();
 
 const args = process.argv.slice(2);
-if(args.length === undefined) {
-    console.log(`Using default date ${month+1} ${year}`);
-}
 
-if(args.length === 2) {
+if(args.length === undefined || args.length !== 2) {
+    console.log(`Using default date ${month+1} ${year}`);
+} else {
     let monthArg = args[0];
     let yearArg = args[1];
 
     if(monthArg > 0 && monthArg <= 12 && yearArg >= 2020) {
-        console.log(`Using provided date ${month} ${year}`)
+        console.log(`Using provided date ${monthArg} ${yearArg}`)
         month = monthArg - 1; // actual month data in js is 0 based
         year = yearArg;
     } else {
@@ -44,14 +43,13 @@ fetch('https://api.iterable.com/api/campaigns', {
         let campaignSummary = json.campaigns
             .filter(campaign => {
                     let campaignDate = new Date(campaign.startAt);
-                    let month = campaignDate.getMonth();
-                    let year = campaignDate.getFullYear();
+                    let cMonth = campaignDate.getMonth();
+                    let cYear = campaignDate.getFullYear();
         
-                    if(month === month && year === year)
+                    if(cMonth == month && cYear == year) // intentionally ==
                         return true;
             })
             .map(campaign => {
-                console.log(campaign);
                 return {
                     name: campaign.name,
                     sendSize: campaign.sendSize,

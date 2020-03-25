@@ -108,3 +108,6 @@ dist
 
 # csv files created
 *.csv
+
+# vscode files.... get your own
+.vscode
