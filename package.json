@@ -1,5 +1,5 @@
 {
-  "name": "functions",
+  "name": "iterablescanner-console",
   "description": "Gets campaigns for a given month and saves to CSV",
   "dependencies": {
     "console.table": "^0.10.0",
